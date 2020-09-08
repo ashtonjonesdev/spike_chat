@@ -35,9 +35,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "dev.ashtonjones.stream_chat_with_firebase"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 29
         compileSdkVersion 29
         versionCode flutterVersionCode.toInteger()
