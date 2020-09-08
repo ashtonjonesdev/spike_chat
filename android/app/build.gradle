@@ -22,10 +22,13 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+googleServices { disableVersionCheck = true }
+
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     lintOptions {
         disable 'InvalidPackage'
@@ -35,9 +38,12 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "dev.ashtonjones.stream_chat_with_firebase"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
+        compileSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -51,4 +57,10 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+
+    implementation 'com.android.support:multidex:1.0.3'
+
 }

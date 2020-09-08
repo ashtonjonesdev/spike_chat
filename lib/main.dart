@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
 
   MyApp(this.client, this.channel);
 
+  // This needs to be called before any Firebase services can be used
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
 
   @override
