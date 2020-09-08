@@ -23,6 +23,9 @@ dependencies:
   firebase_analytics: ^6.0.0
   cloud_firestore: 0.14.0+2
   google_sign_in: ^4.5.3
+  apple_sign_in: ^0.1.0
+  flutter_secure_storage: ^3.2.1+1
+
 
   material_about: ^0.2.1
   share: '>=0.6.4+2 <2.0.0'

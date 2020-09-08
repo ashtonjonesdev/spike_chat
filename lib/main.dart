@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:stream_chat_with_firebase/ui/widgets/stream_chat_widgets.dart';
 
 void main() async {
   final client = Client(
@@ -12,7 +13,8 @@ void main() async {
     User(
       id: 'old-grass-9',
       extraData: {
-        'image': 'https://getstream.io/random_png/?id=old-grass-9&amp;name=Old+grass',
+        'image':
+            'https://getstream.io/random_png/?id=old-grass-9&amp;name=Old+grass',
       },
     ),
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoib2xkLWdyYXNzLTkifQ.5oPKmqqz-GSqj_KzMLfXCY1YALdCTFecupzOVJUhxUw',
@@ -25,7 +27,6 @@ void main() async {
 
   runApp(MyApp(client, channel));
 
-  // runApp(MyApp(client));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,13 +34,11 @@ class MyApp extends StatelessWidget {
   final Channel channel;
 
 
-  // MyApp(this.client); // final Channel channel;
-
   MyApp(this.client, this.channel);
 
   // This needs to be called before any Firebase services can be used
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
+  final Future<FirebaseApp> _initialization =
+      Firebase.initializeApp().catchError((error) => print(error));
 
   @override
   Widget build(BuildContext context) {
@@ -49,54 +48,6 @@ class MyApp extends StatelessWidget {
         child: StreamChannel(
           channel: channel,
           child: ChannelPage(),
-        ),
-      ),
-      // builder: (context, child) => StreamChat(
-      //   client: client,
-      //   child: child,
-      // ),
-      // home: ChannelListPage(),
-    );
-  }
-}
-
-class ChannelPage extends StatelessWidget {
-  const ChannelPage({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ChannelHeader(),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: MessageListView(),
-          ),
-          MessageInput(),
-        ],
-      ),
-    );
-  }
-}
-
-class ChannelListPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ChannelsBloc(
-        child: ChannelListView(
-          filter: {
-            'members': {
-              '\$in': [StreamChat.of(context).user.id],
-            }
-          },
-          sort: [SortOption('last_message_at')],
-          pagination: PaginationParams(
-            limit: 20,
-          ),
-          channelWidget: ChannelPage(),
         ),
       ),
     );
