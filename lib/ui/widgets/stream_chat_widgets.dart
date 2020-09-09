@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
+class StreamChatRoot extends StatelessWidget {
+  final Client client;
+  final Channel channel;
+
+  StreamChatRoot({this.client, this.channel});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: StreamChat(
+        client: client,
+        child: StreamChannel(
+          channel: channel,
+          child: ChannelPage(),
+        ),
+      ),
+    );
+  }
+}
+
 class ChannelPage extends StatelessWidget {
   const ChannelPage({
     Key key,
@@ -9,36 +29,16 @@ class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChannelHeader(),
+      appBar: ChannelHeader(showBackButton: false, onBackPressed: () => Navigator.popUntil(context, (route) => false),),
       body: Column(
         children: <Widget>[
           Expanded(
             child: MessageListView(),
           ),
-          MessageInput(),
-        ],
-      ),
-    );
-  }
-}
-
-class ChannelListPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ChannelsBloc(
-        child: ChannelListView(
-          filter: {
-            'members': {
-              '\$in': [StreamChat.of(context).user.id],
-            }
-          },
-          sort: [SortOption('last_message_at')],
-          pagination: PaginationParams(
-            limit: 20,
+          MessageInput(
+            onMessageSent: (message) => print('Sending message: $message'),
           ),
-          channelWidget: ChannelPage(),
-        ),
+        ],
       ),
     );
   }

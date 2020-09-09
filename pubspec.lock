@@ -643,14 +643,14 @@ packages:
       name: stream_chat
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.3+3"
+    version: "0.2.4"
   stream_chat_flutter:
     dependency: "direct main"
     description:
       name: stream_chat_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6+1"
+    version: "0.2.7"
   string_scanner:
     dependency: transitive
     description:
@@ -692,7 +692,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.5.2"
+    version: "5.5.3"
   url_launcher_linux:
     dependency: transitive
     description:
