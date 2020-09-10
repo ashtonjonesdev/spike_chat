@@ -5,7 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:stream_chat_with_firebase/core/services/AuthService.dart';
+import 'package:stream_chat_with_firebase/styles/theme.dart';
+import 'package:stream_chat_with_firebase/ui/screens/about_developer.dart';
 import 'package:stream_chat_with_firebase/ui/screens/home.dart';
+import 'package:stream_chat_with_firebase/ui/screens/introduction.dart';
 import 'package:stream_chat_with_firebase/ui/screens/register.dart';
 import 'package:stream_chat_with_firebase/ui/screens/sign_in.dart';
 import 'package:stream_chat_with_firebase/ui/screens/welcome.dart';
@@ -18,14 +21,40 @@ void main() async {
   FirebaseApp app =
       await Firebase.initializeApp().catchError((error) => print(error));
 
+  // final client = Client(
+  //   'r8fnv923e2hz',
+  //   logLevel: Level.INFO,
+  // );
+  //
+  // await client.setUser(
+  //   User(
+  //     id: 'autumn-king-6',
+  //     extraData: {
+  //       'image': 'https://getstream.io/random_png/?id=autumn-king-6&amp;name=Autumn+king',
+  //     },
+  //   ),
+  //   'u9hz4c64d43tbayaqwgutqps836j969rjv56kws4d442wxphqqmdxftser8na69g',
+  // );
+  //
+  // final channel = client.channel('messaging', id: 'godevs');
+  //
+  // // ignore: unawaited_futures
+  // channel.watch();
+
   runApp(ChangeNotifierProvider<AuthService>(
       child: MyApp(), create: (context) => AuthService()));
 }
 
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {
-  Client _streamClient;
-  Channel _streamChannel;
+  Client streamClient;
+  Channel streamChannel;
+
+
+  // MyApp({this.streamClient, this.streamChannel});
+
+
+  MyApp();
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -36,7 +65,7 @@ class _MyAppState extends State<MyApp> {
   String _username;
   String _userTokenFromProvider;
 
-  bool _isLoggedIn;
+  bool _isLoggedIn = false;
 
   @override
   void initState() {
@@ -64,10 +93,14 @@ class _MyAppState extends State<MyApp> {
     ]);
 
     return MaterialApp(
+      title: 'SpikeChat',
+      theme: AppTheme.appThemeData,
         routes: {
           Home.routeName: (context) => Home(),
           SignIn.routeName: (context) => SignIn(),
           Register.routeName: (context) => Register(),
+          AboutDeveloper.routeName: (context) => AboutDeveloper(),
+          Introduction.routeName: (context) => Introduction(),
           'welcome': (context) => Welcome(),
         },
         debugShowCheckedModeBanner: false,
@@ -130,12 +163,12 @@ class _MyAppState extends State<MyApp> {
   //
   // }
 
-  void _initializeUserData(
-      {String userPhotoUrl,
-      String username,
-      Future<String> userTokenFromProvider}) async {
-    _userPhotoUrl = userPhotoUrl;
-    _username = username;
-    _userTokenFromProvider = await userTokenFromProvider;
-  }
+//   void _initializeUserData(
+//       {String userPhotoUrl,
+//       String username,
+//       Future<String> userTokenFromProvider}) async {
+//     _userPhotoUrl = userPhotoUrl;
+//     _username = username;
+//     _userTokenFromProvider = await userTokenFromProvider;
+//   }
 }

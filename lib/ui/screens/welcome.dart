@@ -52,7 +52,7 @@ class _WelcomeState extends State<Welcome> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(
-            'Reply',
+            'SpikeChat',
             style: Theme.of(context)
                 .textTheme
                 .headline3
