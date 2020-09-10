@@ -18,6 +18,9 @@ class Home extends StatefulWidget {
 
   final auth.User firebaseUser;
 
+  Client _streamClient;
+  Channel _streamChannel;
+
   Home({this.firebaseUser});
 
   @override
@@ -32,28 +35,28 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   String _userTokenFromProvider;
   String _uID;
 
-  Client _streamClient;
-  Channel _streamChannel;
-
   @override
-  // void initState() {
-  //   _initializeUserData(
-  //       username: widget.firebaseUser.displayName,
-  //       userPhotoUrl: widget.firebaseUser.photoURL,
-  //       userTokenFromProvider: widget.firebaseUser.getIdToken(),
-  //       uID: widget.firebaseUser.uid);
-  //   _initializeStreamClient();
-  //   super.initState();
-  // }
+  void initState() {
+    _initializeUserData(
+        username: widget.firebaseUser.displayName,
+        userPhotoUrl: widget.firebaseUser.photoURL,
+        userTokenFromProvider: widget.firebaseUser.getIdToken(),
+        uID: widget.firebaseUser.uid);
+    _initializeStreamClient();
+    super.initState();
+  }
 
-  // void _initializeStreamClient() async {
-  //   print('Initializing Stream client...');
+  void _initializeStreamClient() async {
+    print('Initializing Stream client...');
 
-    // widget.streamClient = Client(
-    //   'ck3vz6wvspd5',
-    //   logLevel: Level.INFO,
-    //   tokenProvider: (String username) {return getUserToken(_username);}
-    // );
+    /// Initialize the client with the "Stream Chat" Stream App key and a token from Firebase
+    widget._streamClient = Client('r8fnv923e2hz',
+        logLevel: Level.INFO,
+        connectTimeout: Duration(milliseconds: 6000),
+        receiveTimeout: Duration(milliseconds: 6000),
+        tokenProvider: (String username) {
+      return getUserToken(_username);
+    });
 
     // final streamClient = Client(
     //   '4874kgvau9jt',
@@ -61,69 +64,56 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //   connectTimeout: Duration(milliseconds: 6000),
     //   receiveTimeout: Duration(milliseconds: 6000),
     // );
-    //
+
     // String devToken = streamClient.devToken(_username);
-    //
-    // // await streamClient.setUser(
-    // //   User(id: _username, extraData: {
-    // //     'image': _userPhotoUrl,
-    // //   }),
-    // //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibXV0ZS1maXJlZmx5LTIifQ.TtaZN6W0DNaFntjHJbGBhtGnIgTW6UNOAnejBJ-w8jQ',
-    // // );
-    //
-    // await streamClient.setGuestUser(User(
-    //   id: 'TJgrapes',
-    //   extraData: {
-    //     'image' : _userPhotoUrl
-    //   }
-    // ));
 
-    // await widget.streamClient.setUserWithProvider(User(
-    //   id: _username,
-    //   extraData: {
-    //     'image':
-    //     _userPhotoUrl,
-    //   }
-    // ),);
+    // await streamClient.setUser(
+    //   User(id: _username, extraData: {
+    //     'image': _userPhotoUrl,
+    //   }),
+    //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibXV0ZS1maXJlZmx5LTIifQ.TtaZN6W0DNaFntjHJbGBhtGnIgTW6UNOAnejBJ-w8jQ',
+    // );
 
-  //   Channel channel = Channel(streamClient, 'messaging', 'spikeball_channel', {
-  //     'image':
-  //     'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=1200&hei=1200',
-  //   },  );
-  //
-  //   streamClient.channel(channel.type, id: channel.id, extraData: channel.extraData);
-  //
-  //   _streamClient = streamClient;
-  //
-  //   _streamChannel = _streamChannel;
-  //
-  //   // streamChannel = streamClient.channel(
-  //   //   'messaging',
-  //   //   id: 'spikeball',
-  //   //   extraData: {
-  //   //     'image':
-  //   //         'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=1200&hei=1200',
-  //   //   },
-  //   // );
-  //
-  //   // ignore: unawaited_futures
-  //   // streamChannel.watch();
-  // }
-  //
-  // Future<String> getUserToken(String string) {
-  //   return widget.firebaseUser.getIdToken();
-  // }
-  //
-  // void _initializeUserData(
-  //     {String userPhotoUrl,
-  //     String username,
-  //     Future<String> userTokenFromProvider,
-  //     String uID}) async {
-  //   _userPhotoUrl = userPhotoUrl;
-  //   _username = username;
-  //   _userTokenFromProvider = await userTokenFromProvider;
-  //   _uID = uID;
-  // }
+    // await streamClient.setGuestUser(
+    //     User(id: 'TJgrapes', extraData: {'image': _userPhotoUrl}));
+
+    /// Set the user of the client using setUserWithProvider, using the FirebaseUser's display name as the id. This should work since I assigned a TokenProvider when creating the client
+    await widget._streamClient.setUserWithProvider(
+      User(id: _username, extraData: {
+        'image': _userPhotoUrl,
+      }),
+    );
+
+    /// Create and set the channel of the client
+    widget._streamChannel = widget._streamClient.channel(
+      'messaging',
+      id: 'spikeball',
+      extraData: {
+        'image':
+            'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=1200&hei=1200',
+      },
+    );
+
+    // ignore: unawaited_futures
+    widget._streamChannel.watch();
+  }
+
+  /// Fetch the Firebase user token to use for the Stream Client
+  Future<String> getUserToken(String string) {
+    return widget.firebaseUser.getIdToken();
+  }
+
+  /// Get the user data from the signed in FirebaseUser to initialize user data for StreamClient
+  void _initializeUserData(
+      {String userPhotoUrl,
+      String username,
+      Future<String> userTokenFromProvider,
+      String uID}) async {
+    _userPhotoUrl = userPhotoUrl;
+    _username = username;
+    _userTokenFromProvider = await userTokenFromProvider;
+    _uID = uID;
+  }
 
   void _signOut() async {
     await Provider.of<AuthService>(context, listen: false).signout();
@@ -163,31 +153,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     // return StreamChatRoot(client: widget.streamClient, channel: widget.streamChannel);
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          PopupMenuButton<String>(
-            onSelected: _handleMenuItemClick,
-            itemBuilder: (BuildContext context) {
-              return {'Introduction', 'How I Built This', 'About Developer', 'Sign Out'}
-                  .map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(
-                    choice,
-                    style: TextStyle(color: Colors.black),
-                  ),
-                );
-              }).toList();
-            },
-          ),
-        ],
-      ),
-      // body: StreamChatRoot(client: _streamClient, channel: _streamChannel),
-      body: Center(
-        child: Text(
-          'HOME', style: Theme.of(context).textTheme.headline3,
+        appBar: AppBar(
+          actions: [
+            PopupMenuButton<String>(
+              onSelected: _handleMenuItemClick,
+              itemBuilder: (BuildContext context) {
+                return {
+                  'Introduction',
+                  'How I Built This',
+                  'About Developer',
+                  'Sign Out'
+                }.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(
+                      choice,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  );
+                }).toList();
+              },
+            ),
+          ],
         ),
-      )
-    );
+        body: StreamChatRoot(client: widget._streamClient, channel: widget._streamChannel),
+        // body: Center(
+        //   child: Text(
+        //     'HOME',
+        //     style: Theme.of(context).textTheme.headline3,
+        //   ),
+        );
   }
 }

@@ -4,7 +4,7 @@ const Color kPrimaryColor = Color(0xFF2E7DEB);
 const Color kPrimaryColorLight = Color(0xFF68bcff);
 const Color kPrimaryColorDark = Color(0xFF2a4bb9);
 
-const Color kAccentColor = Color(0xFF6DE8D7);
+const Color kAccentColor = Color(0xFFFDE859);
 
 const kSurfaceColor = Color(0xFFFFFFFF);
 const kBackgroundColor = Color(0xFFFFFFFF);

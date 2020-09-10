@@ -21,25 +21,6 @@ void main() async {
   FirebaseApp app =
       await Firebase.initializeApp().catchError((error) => print(error));
 
-  // final client = Client(
-  //   'r8fnv923e2hz',
-  //   logLevel: Level.INFO,
-  // );
-  //
-  // await client.setUser(
-  //   User(
-  //     id: 'autumn-king-6',
-  //     extraData: {
-  //       'image': 'https://getstream.io/random_png/?id=autumn-king-6&amp;name=Autumn+king',
-  //     },
-  //   ),
-  //   'u9hz4c64d43tbayaqwgutqps836j969rjv56kws4d442wxphqqmdxftser8na69g',
-  // );
-  //
-  // final channel = client.channel('messaging', id: 'godevs');
-  //
-  // // ignore: unawaited_futures
-  // channel.watch();
 
   runApp(ChangeNotifierProvider<AuthService>(
       child: MyApp(), create: (context) => AuthService()));
@@ -47,12 +28,6 @@ void main() async {
 
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {
-  Client streamClient;
-  Channel streamChannel;
-
-
-  // MyApp({this.streamClient, this.streamChannel});
-
 
   MyApp();
 
@@ -61,9 +36,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _userPhotoUrl;
-  String _username;
-  String _userTokenFromProvider;
 
   bool _isLoggedIn = false;
 
@@ -82,7 +54,6 @@ class _MyAppState extends State<MyApp> {
         });
       }
     });
-    // _initializeStreamClient();
     super.initState();
   }
 
@@ -107,68 +78,6 @@ class _MyAppState extends State<MyApp> {
         home: _isLoggedIn
             ? Home(firebaseUser: auth.FirebaseAuth.instance.currentUser)
             : Welcome()
-        // FutureBuilder(
-        //     future: Provider.of<AuthService>(context, listen: false).getAuthStateChanges().listen((event) { return event }),
-        //     builder: (context, AsyncSnapshot<auth.User> snapshot) {
-        //       if (snapshot.connectionState == ConnectionState.done) {
-        //           _initializeUserData(username: snapshot.data.displayName ?? 'User',
-        //               userPhotoUrl: snapshot.data.photoURL ?? 'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=1200&hei=1200',
-        //               userTokenFromProvider: snapshot.data.getIdToken() ?? '-1');
-        //           _initializeStreamClient();
-        //
-        //         if (snapshot.error != null) {
-        //           print("error");
-        //           return Text(snapshot.error.toString());
-        //         }
-        //         return snapshot.hasData
-        //             ? Home(firebaseUser: snapshot.data, streamClient: widget._streamClient, streamChannel: widget._streamChannel,)
-        //             : Welcome();
-        //       } else {
-        //         print('Loading...');
-        //         return LoadingCircle();
-        //       }
-        //     }),
         );
   }
-
-  //
-  // void _initializeStreamClient() async {
-  //
-  //   print('Initializing Stream client...');
-  //
-  //   widget._streamClient = Client(
-  //     'b67pax5b2wdq',
-  //     logLevel: Level.INFO,
-  //   );
-  //
-  //   await widget._streamClient.setUser(
-  //     User(
-  //       id: _username,
-  //       extraData: {
-  //         'image':
-  //         _userPhotoUrl,
-  //       },
-  //     ),
-  //     _userTokenFromProvider,
-  //   );
-  //
-  //   widget._streamChannel = widget._streamClient.channel('messaging', id: 'spikeball',
-  //     extraData: {
-  //       'image':
-  //       'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=1200&hei=1200',
-  //     },);
-  //
-  //   // ignore: unawaited_futures
-  //   widget._streamChannel.watch();
-  //
-  // }
-
-//   void _initializeUserData(
-//       {String userPhotoUrl,
-//       String username,
-//       Future<String> userTokenFromProvider}) async {
-//     _userPhotoUrl = userPhotoUrl;
-//     _username = username;
-//     _userTokenFromProvider = await userTokenFromProvider;
-//   }
 }
