@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:apple_sign_in/apple_sign_in.dart';
+import 'package:apple_sign_in/apple_sign_in.dart' as apple;
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -32,7 +32,7 @@ class _WelcomeState extends State<Welcome> {
     super.initState();
 
     if (Platform.isIOS) {
-      AppleSignIn.onCredentialRevoked.listen((_) {
+      apple.AppleSignIn.onCredentialRevoked.listen((_) {
         print("Apple Credentials revoked");
 
         checkAppleLoggedInState();
@@ -219,7 +219,7 @@ class _WelcomeState extends State<Welcome> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(
-            'Reply',
+            'SpikeChat',
             style: Theme.of(context)
                 .textTheme
                 .headline3
@@ -281,9 +281,9 @@ class _WelcomeState extends State<Welcome> {
               SizedBox(height: 20.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: AppleSignInButton(
-                  style: ButtonStyle.black,
-                  type: ButtonType.continueButton,
+                child: apple.AppleSignInButton(
+                  style: apple.ButtonStyle.black,
+                  type: apple.ButtonType.continueButton,
                   onPressed: () async {
                     await Provider.of<AuthService>(context, listen: false)
                         .signInWithApple()
@@ -346,13 +346,13 @@ class _WelcomeState extends State<Welcome> {
       return;
     }
 
-    final credentialState = await AppleSignIn.getCredentialState(userId);
+    final credentialState = await apple.AppleSignIn.getCredentialState(userId);
     switch (credentialState.status) {
-      case CredentialStatus.authorized:
+      case apple.CredentialStatus.authorized:
         print("getCredentialState returned authorized");
         break;
 
-      case CredentialStatus.error:
+      case apple.CredentialStatus.error:
         print(
             "getCredentialState returned an error: ${credentialState.error.localizedDescription}");
         _buildErrorDialog(context,
@@ -360,21 +360,21 @@ class _WelcomeState extends State<Welcome> {
 
         break;
 
-      case CredentialStatus.revoked:
+      case apple.CredentialStatus.revoked:
         print("getCredentialState returned revoked");
         _buildErrorDialog(context,
             'Apple credentials revoked. Please try another sign in method');
 
         break;
 
-      case CredentialStatus.notFound:
+      case apple.CredentialStatus.notFound:
         print("getCredentialState returned not found");
         _buildErrorDialog(context,
             'Apple credentials not found. Please try another sign in method');
 
         break;
 
-      case CredentialStatus.transferred:
+      case apple.CredentialStatus.transferred:
         print("getCredentialState returned not transferred");
         _buildErrorDialog(context,
             'Apple credentials not found. Please try another sign in method');

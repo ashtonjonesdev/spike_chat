@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:apple_sign_in/apple_sign_in.dart';
-import 'package:apple_sign_in/scope.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
