@@ -23,39 +23,11 @@ import 'package:stream_chat_with_firebase/ui/widgets/loading_circle.dart';
 import 'package:stream_chat_with_firebase/ui/widgets/stream_chat_widgets.dart';
 
 void main() async {
-
   /// Initialize SharedPreferences
   WidgetsFlutterBinding.ensureInitialized();
   await sharedPrefs.init();
-
-  // This needs to be called before any Firebase services can be used
-  // WidgetsFlutterBinding.ensureInitialized();
   // FirebaseApp app =
   //     await Firebase.initializeApp().catchError((error) => print(error));
-
-  final streamClient = Client(
-    '4874kgvau9jt',
-    logLevel: Level.INFO,
-  );
-
-  await streamClient.setUser(
-    User(
-      id: 'noisy-waterfall-5',
-      extraData: {
-        'image':
-        'https://getstream.io/random_png/?id=noisy-waterfall-5&amp;name=Noisy+waterfall',
-      },
-    ),
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibm9pc3ktd2F0ZXJmYWxsLTUifQ.nPwOp3GU1p1rk4SGmNsmZH1I7xTxbJUTTrQEgZe6ie4',
-  );
-
-  final streamChannel = streamClient.channel('messaging', id: 'godevs');
-
-  // ignore: unawaited_futures
-  streamChannel.watch();
-  //
-  // runApp(ChangeNotifierProvider<AuthService>(
-  //     child: MyApp(streamClient, streamChannel), create: (context) => AuthService()));
 
   runApp(MyAppStateless());
 }
@@ -98,25 +70,21 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitUp,
     ]);
 
-    return ChangeNotifierProvider < ChatModel > (
-        create: (context)
-    =>
-        ChatModel()
-    ,
-    child: MaterialApp(
-    title: 'SpikeChat',
-    theme: AppTheme.appThemeData,
-    routes: {
-    Home.routeName: (context) => Home(),
-    SignIn.routeName: (context) => SignIn(),
-    Register.routeName: (context) => Register(),
-    AboutDeveloper.routeName: (context) => AboutDeveloper(),
-    Introduction.routeName: (context) => Introduction(),
-    'welcome': (context) => Welcome(),
-    },
-    debugShowCheckedModeBanner: false,
-    home: Home(
-    firebaseUser: auth.FirebaseAuth.instance.currentUser)),
+    return ChangeNotifierProvider<ChatModel>(
+      create: (context) => ChatModel(),
+      child: MaterialApp(
+          title: 'SpikeChat',
+          theme: AppTheme.appThemeData,
+          routes: {
+            Home.routeName: (context) => Home(),
+            SignIn.routeName: (context) => SignIn(),
+            Register.routeName: (context) => Register(),
+            AboutDeveloper.routeName: (context) => AboutDeveloper(),
+            Introduction.routeName: (context) => Introduction(),
+            'welcome': (context) => Welcome(),
+          },
+          debugShowCheckedModeBanner: false,
+          home: Home(firebaseUser: auth.FirebaseAuth.instance.currentUser)),
     );
   }
 }
@@ -124,25 +92,26 @@ class _MyAppState extends State<MyApp> {
 class MyAppStateless extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider < ChatModel > (
-        create: (context)
-    =>
-        ChatModel()
-    ,
-    child: MaterialApp(
-    title: 'SpikeChat',
-    theme: AppTheme.appThemeData,
-    routes: {
-    Home.routeName: (context) => Home(),
-    SignIn.routeName: (context) => SignIn(),
-    Register.routeName: (context) => Register(),
-    AboutDeveloper.routeName: (context) => AboutDeveloper(),
-    Introduction.routeName: (context) => Introduction(),
-    'welcome': (context) => Welcome(),
-    },
-    debugShowCheckedModeBanner: false,
-    home: sharedPrefs.isValidated ? MyHome() : EntryPoint(),
-    ));
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
+    return ChangeNotifierProvider<ChatModel>(
+        create: (context) => ChatModel(),
+        child: MaterialApp(
+          title: 'SpikeChat',
+          theme: AppTheme.appThemeData,
+          routes: {
+            Home.routeName: (context) => Home(),
+            SignIn.routeName: (context) => SignIn(),
+            Register.routeName: (context) => Register(),
+            AboutDeveloper.routeName: (context) => AboutDeveloper(),
+            Introduction.routeName: (context) => Introduction(),
+            'welcome': (context) => Welcome(),
+          },
+          debugShowCheckedModeBanner: false,
+          home: sharedPrefs.isValidated ? MyHome() : EntryPoint(),
+        ));
   }
 }
 
@@ -154,143 +123,145 @@ class MyHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final chatModelProvider = Provider.of<ChatModel>(context);
 
-    return sharedPrefs.username == null ?  Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('SpikeChat',
-            style: Theme
-                .of(context)
-                .textTheme
-                .bodyText2
-                .copyWith(color: kAccentColor, fontSize: 24)),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              'images/app_icon.png',
-              width: 150,
-              height: 150,
+    return sharedPrefs.username == null
+        ? Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text('SpikeChat',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      .copyWith(color: kAccentColor, fontSize: 24)),
             ),
-            CustomForm(
-              textEditingController: _textEditingController,
-              formKey: _formKey,
-              hintText: 'Enter a username...',
-            ),
-            CustomButton(
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  final userId = _textEditingController.value.text;
-                  final client = chatModelProvider.streamClient;
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'images/app_icon.png',
+                    width: 150,
+                    height: 150,
+                  ),
+                  CustomForm(
+                    textEditingController: _textEditingController,
+                    formKey: _formKey,
+                    hintText: 'Enter a username...',
+                  ),
+                  CustomButton(
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        final userId = _textEditingController.value.text;
+                        final client = chatModelProvider.streamClient;
 
-                  sharedPrefs.username = userId;
+                        sharedPrefs.username = userId;
 
-                  await client.setUserWithProvider(User(
-                      id: 'id_$userId',
-                      extraData: {
-                        'name': '$userId',
-                        'image': 'https://picsum.photos/100/100'
-                      }));
+                        await client.setUserWithProvider(User(
+                            id: 'id_$userId',
+                            extraData: {
+                              'name': '$userId',
+                              'image': 'https://picsum.photos/100/100'
+                            }));
 
-                  final channel =
-                  client.channel('mobile', id: 'Spikeball', extraData: {
-                    'image':
-                    'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=400&hei=400&qlt=50'
-                  });
-                  channel.watch();
+                        final channel = client
+                            .channel('mobile', id: 'Spikeball', extraData: {
+                          'image':
+                              'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=400&hei=400&qlt=50'
+                        });
+                        channel.watch();
 
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) =>
-                          StreamChat(
-                            streamChatThemeData: StreamChatThemeData.fromTheme(
-                                AppTheme.appThemeData.copyWith(
-                                    textTheme: GoogleFonts.robotoTextTheme())),
-                            client: client,
-                            child: StreamChannel(
-                              channel: channel,
-                              child: ChannelPage(),
-                            ),
-                          )));
-                }
-              },
-              buttonText: 'SUBMIT',
-            )
-          ],
-        ),
-      ),
-    ) : Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('SpikeChat',
-            style: Theme
-                .of(context)
-                .textTheme
-                .headline3
-                .copyWith(color: kAccentColor, fontSize: 24)),
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset(
-              'images/app_icon.png',
-              width: 150,
-              height: 150,
-            ),
-            Material(
-              child: Text(
-                '${sharedPrefs.username}'
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => StreamChat(
+                                  streamChatThemeData: StreamChatThemeData
+                                      .fromTheme(AppTheme.appThemeData.copyWith(
+                                          textTheme:
+                                              GoogleFonts.robotoTextTheme())),
+                                  client: client,
+                                  child: StreamChannel(
+                                    channel: channel,
+                                    child: ChannelPage(),
+                                  ),
+                                )));
+                      }
+                    },
+                    buttonText: 'SUBMIT',
+                  )
+                ],
               ),
             ),
-            CustomButton(
-              onPressed: () async {
+          )
+        : Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text('SpikeChat',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3
+                      .copyWith(color: kAccentColor, fontSize: 24)),
+            ),
+            body: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset(
+                    'images/app_icon.png',
+                    width: 150,
+                    height: 150,
+                  ),
+                  Material(
+                    child: Text(
+                      '${sharedPrefs.username}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          .copyWith(fontSize: 20),
+                    ),
+                  ),
+                  CustomButton(
+                    onPressed: () async {
+                      final client = chatModelProvider.streamClient;
 
-                final client = chatModelProvider.streamClient;
+                      await client.setUserWithProvider(User(
+                          id: 'id_${sharedPrefs.username}',
+                          extraData: {
+                            'name': '${sharedPrefs.username}',
+                            'image': 'https://picsum.photos/100/100'
+                          }));
 
-                  await client.setUserWithProvider(User(
-                      id: 'id_${sharedPrefs.username}',
-                      extraData: {
-                        'name': '${sharedPrefs.username}',
-                        'image': 'https://picsum.photos/100/100'
-                      }));
+                      final channel =
+                          client.channel('mobile', id: 'Spikeball', extraData: {
+                        'image':
+                            'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=400&hei=400&qlt=50'
+                      });
+                      channel.watch();
 
-                  final channel =
-                  client.channel('mobile', id: 'Spikeball', extraData: {
-                    'image':
-                    'https://scheels.scene7.com/is/image/Scheels/85375900555?wid=400&hei=400&qlt=50'
-                  });
-                  channel.watch();
-
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) =>
-                          StreamChat(
-                            streamChatThemeData: StreamChatThemeData.fromTheme(
-                                AppTheme.appThemeData.copyWith(
-                                    textTheme: GoogleFonts.robotoTextTheme())),
-                            client: client,
-                            child: StreamChannel(
-                              channel: channel,
-                              child: ChannelPage(),
-                            ),
-                          )));
-                },
-              buttonText: 'CONTINUE',
-            )
-          ],
-        ),
-      ),
-    );
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => StreamChat(
+                                streamChatThemeData:
+                                    StreamChatThemeData.fromTheme(
+                                        AppTheme.appThemeData.copyWith(
+                                            textTheme:
+                                                GoogleFonts.robotoTextTheme())),
+                                client: client,
+                                child: StreamChannel(
+                                  channel: channel,
+                                  child: ChannelPage(),
+                                ),
+                              )));
+                    },
+                    buttonText: 'CONTINUE',
+                  )
+                ],
+              ),
+            ),
+          );
   }
 }
 
 class EntryPoint extends StatelessWidget {
-
   final TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -298,8 +269,7 @@ class EntryPoint extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('SpikeChat',
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .bodyText2
                 .copyWith(color: kAccentColor)),
@@ -336,10 +306,11 @@ class EntryPoint extends StatelessWidget {
               if (_formKey.currentState.validate()) {
                 sharedPrefs.isValidated = true;
 
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => MyHome()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => MyHome()));
               }
-            }, buttonText: 'VERIFY',
+            },
+            buttonText: 'VERIFY',
           )
         ],
       ),

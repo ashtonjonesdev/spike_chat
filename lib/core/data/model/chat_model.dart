@@ -7,23 +7,7 @@ import 'package:stream_chat_with_firebase/styles/constants.dart';
 
 class ChatModel extends ChangeNotifier {
   Client _streamClient;
-  String _channelName;
-  Channel _currentChannel;
 
-
-  String get channelName => _channelName;
-
-  set channelName(String value) {
-    _channelName = value;
-    notifyListeners();
-  }
-
-
-  set currentChannel(Channel value) {
-    _currentChannel = value;
-    streamClient.channel(_currentChannel.id);
-    notifyListeners();
-  }
 
   ChatModel() {
     _streamClient = Client(STREAM_API_KEY,
@@ -42,20 +26,4 @@ class ChatModel extends ChangeNotifier {
     return jwt.encode(payload);
   }
 
-//   List<Widget> createListOfChannels(List<Channel> channels, context) {
-//
-//     final provider = Provider.of<ChatModel>(context);
-//
-//     return channels.map((chan) => {
-//       ListTile(
-//         subtitle: Text("Last Message at: ${chan.lastMessageAt}"),
-//
-//         title: Text(
-//           "Channel Title: ${chan.cid.replaceFirstMapped("mobile", (match) => "") }
-//         ),
-//       ),
-//     }).toList();
-//
-//   }
-//
 }
