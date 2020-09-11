@@ -33,8 +33,8 @@ class AboutDeveloper extends StatelessWidget {
           ),
         ),
         dp: Image.asset(
-          "images/profile_picture.JPG",
-          height: 190.0,
+          "images/ash.png",
+          height: 500.0,
           fit: BoxFit.fill,
         ),
         name: "Ashton Jones",
@@ -75,8 +75,8 @@ class AboutDeveloper extends StatelessWidget {
           ),
         ),
         dp: Image.asset(
-          "images/profile_picture.JPG",
-          height: 190.0,
+          "images/ash.png",
+          height: 500.0,
           fit: BoxFit.fill,
         ),
         name: "Ashton Jones",

@@ -58,7 +58,7 @@ class _WelcomeState extends State<Welcome> {
                 .headline3
                 .copyWith(color: kPrimaryColor),
           ),
-          Image.asset('images/icons8_comments_48.png'),
+          Image.asset('images/app_icon.png', height: 48, width: 48,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -190,8 +190,7 @@ class _WelcomeState extends State<Welcome> {
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
                 Image.asset(
-                  'images/associate_android_developer_badge_small.png',
-                  width: 96,
+                  'images/profile_picture.png',
                   height: 96,
                 ),
                 GestureDetector(
@@ -225,7 +224,7 @@ class _WelcomeState extends State<Welcome> {
                 .headline3
                 .copyWith(color: kPrimaryColor),
           ),
-          Image.asset('images/icons8_comments_48.png'),
+          Image.asset('images/app_icon.png', width: 48, height: 48,),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -320,6 +319,10 @@ class _WelcomeState extends State<Welcome> {
                 Text(
                   'Created by',
                   style: Theme.of(context).textTheme.bodyText1,
+                ),
+                Image.asset(
+                  'images/profile_picture',
+                  height: 96,
                 ),
                 GestureDetector(
                   onTap: _openPersonalWebsite,

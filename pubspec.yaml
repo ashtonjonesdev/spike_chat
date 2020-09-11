@@ -32,6 +32,10 @@ dependencies:
   url_launcher: ^5.5.3
   provider: ^4.1.3
   google_fonts: ^1.1.0
+  start_jwt: ^0.2.0
+  shared_preferences: ^0.5.10
+
+
 
 
 dev_dependencies:

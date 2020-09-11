@@ -12,7 +12,7 @@ class AppTheme {
     accentColor: kAccentColor,
     backgroundColor: kBackgroundColor,
     errorColor: kErrorColor,
-    textTheme: GoogleFonts.majorMonoDisplayTextTheme(),
+    textTheme: GoogleFonts.robotoTextTheme(),
   );
 
 }

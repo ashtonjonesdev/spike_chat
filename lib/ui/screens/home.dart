@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:stream_chat/stream_chat.dart';
 import 'package:stream_chat_with_firebase/core/services/AuthService.dart';
+import 'package:stream_chat_with_firebase/styles/constants.dart';
 import 'package:stream_chat_with_firebase/ui/screens/about_developer.dart';
 import 'package:stream_chat_with_firebase/ui/screens/introduction.dart';
 import 'package:stream_chat_with_firebase/ui/screens/welcome.dart';
@@ -50,13 +51,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     print('Initializing Stream client...');
 
     /// Initialize the client with the "Stream Chat" Stream App key and a token from Firebase
-    widget._streamClient = Client('r8fnv923e2hz',
+    widget._streamClient = Client(STREAM_API_KEY,
         logLevel: Level.INFO,
         connectTimeout: Duration(milliseconds: 6000),
         receiveTimeout: Duration(milliseconds: 6000),
         tokenProvider: (String username) {
-      return getUserToken(_username);
-    });
+      return getUserToken(STREAM_API_SECRET);
+    }
+    );
+
+    // String devToken = widget._streamClient.devToken(_username);
+
+    // await widget._streamClient.setUser(User(
+    //   id: 'old-goat-9',
+    //   extraData: {
+    //     'image': _userPhotoUrl,
+    //   },
+    //
+    // ),     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibm9pc3ktd2F0ZXJmYWxsLTUifQ.nPwOp3GU1p1rk4SGmNsmZH1I7xTxbJUTTrQEgZe6ie4',
+    // );
+
 
     // final streamClient = Client(
     //   '4874kgvau9jt',
@@ -77,7 +91,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     // await streamClient.setGuestUser(
     //     User(id: 'TJgrapes', extraData: {'image': _userPhotoUrl}));
 
-    /// Set the user of the client using setUserWithProvider, using the FirebaseUser's display name as the id. This should work since I assigned a TokenProvider when creating the client
+    // Set the user of the client using setUserWithProvider, using the FirebaseUser's display name as the id. This should work since I assigned a TokenProvider when creating the client
     await widget._streamClient.setUserWithProvider(
       User(id: _username, extraData: {
         'image': _userPhotoUrl,
@@ -185,3 +199,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         );
   }
 }
+
+class HomeStateless extends StatelessWidget {
+
+  final auth.User firebaseUser;
+  final Client streamClient;
+  final Channel streamChannel;
+
+
+  HomeStateless(this.firebaseUser, this.streamClient, this.streamChannel);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamChatRoot(client: streamClient, channel: streamChannel,);
+  }
+}
+
