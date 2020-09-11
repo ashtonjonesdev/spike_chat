@@ -162,7 +162,7 @@ class MyHome extends StatelessWidget {
                 .of(context)
                 .textTheme
                 .bodyText2
-                .copyWith(color: kAccentColor)),
+                .copyWith(color: kAccentColor, fontSize: 24)),
       ),
       body: Center(
         child: Column(
@@ -227,8 +227,8 @@ class MyHome extends StatelessWidget {
             style: Theme
                 .of(context)
                 .textTheme
-                .bodyText2
-                .copyWith(color: kAccentColor)),
+                .headline3
+                .copyWith(color: kAccentColor, fontSize: 24)),
       ),
       body: Center(
         child: Column(
