@@ -44,12 +44,8 @@ Copyright 2020 Ashton Jones
 
 
 ## 📸 Screenshots
-<img src="./screenshots/Screenshot_20200714-134549.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200714-134838.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200714-134845.jpg" width="30%" height="30%">&ensp;
-------
-<img src="./screenshots/Screenshot_20200714-134857_Android System.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200714-134915_Messages.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/_reply_apple_screenshot_1.png" width="30%" height="30%">&ensp;
-------
-<img src="./screenshots/_reply_apple_screenshot_2.png" width="30%" height="30%">&ensp;<img src="./screenshots/_reply_apple_screenshot_3.png" width="30%" height="30%">&ensp;
-<img src="./screenshots/_reply_apple_screenshot_4.png" width="30%" height="30%">&ensp;
+<img src="./screenshots/spikechat_main_screenshot.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200912-124429.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200912-124122.jpg" width="30%" height="30%">&ensp;
+
 
 
 
