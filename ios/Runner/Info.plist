@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>dev.ashtonjones.spikeChat</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -22,14 +22,23 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>Required to download files</string>
+    </array>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Required to share audio files</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Required to share images</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>Required to download files</string>
-	</array>
+	<key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+    </dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Required to take photos</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Required to take photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
