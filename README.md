@@ -4,7 +4,7 @@ A fully functional chat application built with Flutter and Stream!
 * ✅  Join the chat room (If you have the secret passcode hehe)
 * ✅  Send text, images, audio, and video in the chat
 * ✅  React to messages (i.e. *heart react*) and see the reaction count
-* ✅  See then the chat was last active
+* ✅  See when the chat was last active
 
 ## 🚀 Motivation
 I found out about Stream's chat API and wanted to experiment with it. I decided to build a Spikeball group chat application for me and my friends to plan times to play Spikeball.
