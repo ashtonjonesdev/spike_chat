@@ -31,6 +31,7 @@ class EntryPoint extends StatelessWidget {
           Form(
             key: _formKey,
             child: TextFormField(
+              obscureText: true,
               controller: _textEditingController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
