@@ -9,20 +9,21 @@ class ChannelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ChannelHeader(showBackButton: false,
-        onBackPressed: () => Navigator.popUntil(context, (route) => false),),
+      appBar: ChannelHeader(
+        showBackButton: false,
+        onBackPressed: () => Navigator.popUntil(context, (route) => false),
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: MessageListView(),
           ),
           MessageInput(
-            onMessageSent: (message) => print('Sending message: ${message.text}'),
+            onMessageSent: (message) =>
+                print('Sending message: ${message.text}'),
           ),
         ],
       ),
     );
   }
 }
-
-

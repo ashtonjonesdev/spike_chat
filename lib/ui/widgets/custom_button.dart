@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:spike_chat/styles/colors.dart';
 
 class CustomButton extends StatelessWidget {
-
   final VoidCallback onPressed;
   final String buttonText;
-
 
   CustomButton({this.onPressed, this.buttonText});
 
