@@ -1,5 +1,5 @@
-name: stream_chat_with_firebase
-description: A fully-functional chat application using Stream and Firebase
+name: spike_chat
+description: A Spikeball chat application built using Flutter and Stream
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 

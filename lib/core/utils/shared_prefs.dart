@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stream_chat_with_firebase/styles/constants.dart';
+import 'package:spike_chat/styles/constants.dart';
 
 class SharedPrefs {
 

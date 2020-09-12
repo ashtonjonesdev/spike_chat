@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:stream_chat_with_firebase/core/data/model/chat_model.dart';
-import 'package:stream_chat_with_firebase/core/utils/shared_prefs.dart';
-import 'package:stream_chat_with_firebase/styles/theme.dart';
-import 'package:stream_chat_with_firebase/ui/screens/entry_point.dart';
-import 'package:stream_chat_with_firebase/ui/screens/home.dart';
+import 'package:spike_chat/styles/theme.dart';
+import 'package:spike_chat/ui/screens/entry_point.dart';
+import 'package:spike_chat/ui/screens/home.dart';
+
+import 'core/data/model/chat_model.dart';
+import 'core/utils/shared_prefs.dart';
 
 void main() async {
   /// Initialize SharedPreferences

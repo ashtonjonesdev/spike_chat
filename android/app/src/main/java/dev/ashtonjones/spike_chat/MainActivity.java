@@ -1,4 +1,4 @@
-package dev.ashtonjones.stream_chat_with_firebase;
+package dev.ashtonjones.spike_chat;
 
 import io.flutter.embedding.android.FlutterActivity;
 

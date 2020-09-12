@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:spike_chat/core/data/model/chat_model.dart';
+import 'package:spike_chat/core/utils/shared_prefs.dart';
+import 'package:spike_chat/styles/colors.dart';
+import 'package:spike_chat/styles/theme.dart';
+import 'package:spike_chat/ui/widgets/custom_button.dart';
+import 'package:spike_chat/ui/widgets/custom_form.dart';
+import 'package:spike_chat/ui/widgets/stream_chat_widgets.dart';
 import 'package:stream_chat/stream_chat.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:stream_chat_with_firebase/core/data/model/chat_model.dart';
-import 'package:stream_chat_with_firebase/core/utils/shared_prefs.dart';
-import 'package:stream_chat_with_firebase/styles/colors.dart';
-import 'package:stream_chat_with_firebase/styles/theme.dart';
-import 'package:stream_chat_with_firebase/ui/widgets/custom_button.dart';
-import 'package:stream_chat_with_firebase/ui/widgets/custom_form.dart';
-import 'package:stream_chat_with_firebase/ui/widgets/stream_chat_widgets.dart';
-
 class Home extends StatelessWidget {
 
   static final String routeName = 'home';

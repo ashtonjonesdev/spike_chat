@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stream_chat_with_firebase/core/utils/shared_prefs.dart';
-import 'package:stream_chat_with_firebase/styles/colors.dart';
-import 'package:stream_chat_with_firebase/ui/widgets/custom_button.dart';
+import 'package:spike_chat/core/utils/shared_prefs.dart';
+import 'package:spike_chat/styles/colors.dart';
+import 'package:spike_chat/ui/widgets/custom_button.dart';
 
 import 'home.dart';
 

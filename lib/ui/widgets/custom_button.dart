@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:stream_chat_with_firebase/styles/colors.dart';
+import 'package:spike_chat/styles/colors.dart';
 
 class CustomButton extends StatelessWidget {
 

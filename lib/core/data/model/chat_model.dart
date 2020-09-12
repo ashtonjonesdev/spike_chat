@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:spike_chat/styles/constants.dart';
 import 'package:start_jwt/json_web_signature.dart';
 import 'package:start_jwt/json_web_token.dart';
 import 'package:stream_chat/stream_chat.dart';
-import 'package:stream_chat_with_firebase/styles/constants.dart';
+
 
 class ChatModel extends ChangeNotifier {
   Client _streamClient;
