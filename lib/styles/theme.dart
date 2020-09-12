@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 class AppTheme {
-
   static ThemeData appThemeData = ThemeData.light().copyWith(
     visualDensity: VisualDensity.adaptivePlatformDensity,
     primaryColor: kPrimaryColor,
@@ -14,5 +13,4 @@ class AppTheme {
     errorColor: kErrorColor,
     textTheme: GoogleFonts.robotoTextTheme(),
   );
-
 }
