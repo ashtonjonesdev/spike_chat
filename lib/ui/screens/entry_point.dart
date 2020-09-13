@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spike_chat/core/utils/shared_prefs.dart';
 import 'package:spike_chat/styles/colors.dart';
+import 'package:spike_chat/styles/constants.dart';
 import 'package:spike_chat/ui/widgets/custom_button.dart';
 
 import 'home.dart';
@@ -41,7 +42,7 @@ class EntryPoint extends StatelessWidget {
                 if (input.isEmpty) {
                   return 'Enter some text';
                 }
-                if (input == 'spiketally') {
+                if (input == APP_PASSCODE) {
                   return null;
                 }
                 return 'You do not have access to this group';
