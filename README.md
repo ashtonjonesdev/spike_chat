@@ -1,4 +1,7 @@
 # 🏐 SpikeChat
+
+<p align="center"><img src="https://raw.githubusercontent.com/ashtonjonesdev/ashtonjonesdev/master/androidify.gif"></p>
+
 -------
 A fully functional chat application built with Flutter and Stream!
 * ✅  Join the chat room (If you have the secret passcode hehe)
