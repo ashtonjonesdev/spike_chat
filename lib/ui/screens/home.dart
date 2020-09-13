@@ -70,10 +70,6 @@ class Home extends StatelessWidget {
 
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (_) => StreamChat(
-                                  streamChatThemeData: StreamChatThemeData
-                                      .fromTheme(AppTheme.appThemeData.copyWith(
-                                          textTheme:
-                                              GoogleFonts.robotoTextTheme())),
                                   client: client,
                                   child: StreamChannel(
                                     channel: channel,
