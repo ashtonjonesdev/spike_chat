@@ -1,4 +1,7 @@
 # 🏐 SpikeChat
+
+<p align="center"><img src="./gif/spikechat_demo.gif"></p>
+
 -------
 A fully functional chat application built with Flutter and Stream!
 * ✅  Join the chat room (If you have the secret passcode hehe)
@@ -7,7 +10,7 @@ A fully functional chat application built with Flutter and Stream!
 * ✅  See when the chat was last active
 
 ## 🚀 Motivation
-I found out about Stream's chat API and wanted to experiment with it. I decided to build a Spikeball group chat application for me and my friends to plan times to play Spikeball.
+I discovered Stream's chat API and challenged myself to build a fully functional Flutter messaging app with it. I decided to build SpikeChat, a group chat application for me and my friends to plan times to play Spikeball.
 
 ## 🖥 Technologies used
 
@@ -44,12 +47,8 @@ Copyright 2020 Ashton Jones
 
 
 ## 📸 Screenshots
-<img src="./screenshots/Screenshot_20200714-134549.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200714-134838.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200714-134845.jpg" width="30%" height="30%">&ensp;
-------
-<img src="./screenshots/Screenshot_20200714-134857_Android System.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200714-134915_Messages.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/_reply_apple_screenshot_1.png" width="30%" height="30%">&ensp;
-------
-<img src="./screenshots/_reply_apple_screenshot_2.png" width="30%" height="30%">&ensp;<img src="./screenshots/_reply_apple_screenshot_3.png" width="30%" height="30%">&ensp;
-<img src="./screenshots/_reply_apple_screenshot_4.png" width="30%" height="30%">&ensp;
+<img src="./screenshots/spikechat_main_screenshot.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200912-124429.jpg" width="30%" height="30%">&ensp;<img src="./screenshots/Screenshot_20200912-124122.jpg" width="30%" height="30%">&ensp;
+
 
 
 
