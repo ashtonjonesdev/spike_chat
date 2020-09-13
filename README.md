@@ -1,6 +1,6 @@
 # 🏐 SpikeChat
 
-<p align="center"><img src="https://raw.githubusercontent.com/ashtonjonesdev/ashtonjonesdev/master/androidify.gif"></p>
+<p align="center"><img src="./gif/spikechat_demo.gif"></p>
 
 -------
 A fully functional chat application built with Flutter and Stream!
