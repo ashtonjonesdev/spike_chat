@@ -10,7 +10,7 @@ A fully functional chat application built with Flutter and Stream!
 * ✅  See when the chat was last active
 
 ## 🚀 Motivation
-I found out about Stream's chat API and wanted to experiment with it. I decided to build a Spikeball group chat application for me and my friends to plan times to play Spikeball.
+I discovered Stream's chat API and challenged myself to build a fully functional Flutter messaging app with it. I decided to build SpikeChat, a group chat application for me and my friends to plan times to play Spikeball.
 
 ## 🖥 Technologies used
 
