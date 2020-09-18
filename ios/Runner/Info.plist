@@ -15,30 +15,30 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>Required to download files</string>
-    </array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Required to share audio files</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Required to take photos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Required to take photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Required to share images</string>
-	<key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
-    <key>NSCameraUsageDescription</key>
-    <string>Required to take photos</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Required to take photos</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>Required to download files</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
