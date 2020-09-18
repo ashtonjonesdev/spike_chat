@@ -37,7 +37,7 @@
 	<string>Required to share images</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>Required to download files</string>
+	<string>Required to download files</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
